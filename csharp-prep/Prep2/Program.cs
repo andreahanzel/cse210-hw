@@ -1,31 +1,40 @@
 using System;
 
-class Program
+namespace GradeCalculator
 {
-    static void Main(string[] args)
+    class Program
     {
-        Console.Write("Enter number: ");
-        string valueFromUser = Console.ReadLine();
-
-        
-        int x = int.Parse(valueFromUser);
-        int y = 2;
-        int z = 5;
-
-        if (!(x > y || x < y) && y < z)
+        static void Main(string[] args)
         {
-            Console.WriteLine("Greater");
-        }
+            Console.Write("Enter your grade percentage: ");
+            double grade = Convert.ToDouble(Console.ReadLine());
 
-        else if (x < y)
-        {
-            Console.WriteLine("Less");
+            string letter = "";
 
-        }
+            if (grade >= 90)
+                letter = "A";
 
-        else
-        {
-        Console.WriteLine("Equal");
+            else if (grade >= 80)
+                letter = "B";
+            
+            else if (grade >= 70)
+                letter = "C";
+            
+            else if (grade >= 60)
+                letter = "D";
+            
+            else
+                letter = "F";
+
+            Console.WriteLine($"Your letter grade is: {letter}");
+
+            if (grade >= 70)
+                Console.WriteLine("Congratulations! You passes the course");
+            
+            else    
+                Console.WriteLine("You did not pass the course");
+
+
         }
     }
-}
+}        
