@@ -5,29 +5,29 @@ namespace MemorizationHelper
 {
     class Scripture
     {
-        private Reference _reference;  // Store the reference of the scripture.
-        private List<Word> _words;    // Store a list of words in the scripture.
+        private Reference _reference;  // Reference object for scripture's book, chapter, and verse.
+        private List<Word> _words;     // List of Word objects representing each word in the scripture.
 
-        // Constructor for creating a new Scripture object.
+        // Constructor to create a Scripture object.
         public Scripture(string book, int chapter, int verse, string text)
         {
-            _reference = new Reference(book, chapter, verse);  // Create a new Reference object for the scripture.
-            _words = new List<Word>();  // Initialize an empty list to store words.
+            _reference = new Reference(book, chapter, verse); // Initialize the reference.
+            _words = new List<Word>(); // Initialize the list of words.
 
-            // Split the input 'text' into words and create Word objects for each word.
+            // Split the text into words and create Word objects for each.
             foreach (string part in text.Split(' '))
             {
                 _words.Add(new Word(part));
             }
         }
 
-        // Present the scripture, displaying the reference and words.
+        // Present the scripture with the reference and words.
         public void PresentScripture()
         {
-            Console.WriteLine($"{_reference}:");  // Display the reference of the scripture.
+            Console.WriteLine($"{_reference}:"); // Display the reference.
             foreach (Word word in _words)
             {
-                // Display each word, replacing concealed words with underscores.
+                // Display each word, using underscores for concealed words.
                 Console.Write(word.IsConcealed() ? new string('_', word.Length()) + " " : word.Text() + " ");
             }
         }
@@ -35,16 +35,16 @@ namespace MemorizationHelper
         // Mask a random visible word in the scripture.
         public bool MaskWord()
         {
-            List<Word> visibleWords = _words.FindAll(w => !w.IsConcealed());  // Find all visible (not concealed) words.
+            List<Word> visibleWords = _words.FindAll(w => !w.IsConcealed()); // Find all non-concealed words.
 
-            // If there are no visible words, return false (no words to mask).
+            // If no visible words left, return false.
             if (visibleWords.Count == 0)
                 return false;
 
-            Random rand = new Random();  // Create a random number generator.
-            int index = rand.Next(visibleWords.Count);  // Generate a random index within the visibleWords list.
-            visibleWords[index].Conceal();  // Conceal the word at the randomly chosen index.
-            return true;  // Return true to indicate that a word was successfully concealed.
+            Random rand = new Random(); // Random number generator.
+            int index = rand.Next(visibleWords.Count); // Random index for a visible word.
+            visibleWords[index].Conceal(); // Conceal the chosen word.
+            return true; // Indicate that a word was concealed.
         }
     }
 }

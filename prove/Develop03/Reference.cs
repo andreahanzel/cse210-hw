@@ -2,30 +2,32 @@ using System;
 
 namespace MemorizationHelper
 {
-    // Class to represent a scripture reference (book, chapter, and verse).
     class Reference
     {
-        // Store the book name, chapter number, and verse number of the scripture reference.
         private string _book;
         private int _chapter;
-        private int _verse;
+        private int _startVerse;
+        private int? _endVerse; // Optional end verse for ranges
 
-        // Constructor to initialize a Reference object with a book name, chapter number, and verse number.
-        public Reference(string book, int chapter, int verse)
+        // Constructor for single verse
+        public Reference(string book, int chapter, int verse) : this(book, chapter, verse, null)
         {
-            // Set the book name.
-            _book = book;
-            // Set the chapter number.
-            _chapter = chapter;
-            // Set the verse number.
-            _verse = verse;
         }
 
-        // Override the ToString method to return the scripture reference in a standard format.
+        // Constructor for verse range
+        public Reference(string book, int chapter, int startVerse, int? endVerse)
+        {
+            _book = book;
+            _chapter = chapter;
+            _startVerse = startVerse;
+            _endVerse = endVerse;
+        }
+
         public override string ToString()
         {
-            // Format and return the reference as "Book Chapter:Verse".
-            return $"{_book} {_chapter}:{_verse}";
+            return _endVerse.HasValue 
+                ? $"{_book} {_chapter}:{_startVerse}-{_endVerse.Value}" 
+                : $"{_book} {_chapter}:{_startVerse}";
         }
     }
 }

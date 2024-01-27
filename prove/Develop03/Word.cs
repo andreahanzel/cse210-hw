@@ -2,42 +2,37 @@ using System;
 
 namespace MemorizationHelper
 {
-    
     class Word
     {
-        // Field to store the actual text content of the word.
-        private string _content;
-        // Field to indicate whether the word is concealed or not.
-        private bool _concealed;
+        private string _content;   // Field for the word's text.
+        private bool _concealed;   // Field indicating if the word is hidden.
 
-        // Constructor to initialize a Word object with its content.
+        // Constructor for the Word class.
         public Word(string content)
         {
-            // Set the content of the word.
-            _content = content;
-            // Initially, the word is not concealed.
-            _concealed = false;
+            _content = content;   // Set the word's content.
+            _concealed = false;   // Initially, the word is not hidden.
         }
 
-        // Mark the word as concealed.
+        // Method to mark the word as hidden.
         public void Conceal()
         {
             _concealed = true;
         }
 
-        // Get the text content of the word.
+        // Method to get the word's text.
         public string Text()
         {
             return _content;
         }
 
-        // Check if the word is concealed.
+        // Method to check if the word is hidden.
         public bool IsConcealed()
         {
             return _concealed;
         }
 
-        // Get the length of the word.
+        // Method to get the length of the word.
         public int Length()
         {
             return _content.Length;
