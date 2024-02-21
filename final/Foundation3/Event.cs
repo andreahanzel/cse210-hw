@@ -15,19 +15,19 @@ public class Event
         Location = location;
     }
 
-    // Standard Details
+    
     public virtual string GetStandardDetails()
     {
         return $"{Title} - {Description} on {Date.ToShortDateString()} at {Time} located at {Location}";
     }
 
-    // Full Details - Designed to be overridden in derived classes
+    
     public virtual string GetFullDetails()
     {
         return GetStandardDetails();
     }
 
-    // Short Description
+    
     public string GetShortDescription()
     {
         return $"{Title} on {Date.ToShortDateString()}";
